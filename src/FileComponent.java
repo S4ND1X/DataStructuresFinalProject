@@ -10,9 +10,9 @@ public abstract class FileComponent {
         throw new UnsupportedOperationException();
     }
 
-    public FileComponent getFileComponent(int fileComponentIndex){
-        throw new UnsupportedOperationException();
-    }
+    public FileComponent getFileComponent(int fileComponentIndex){ throw new UnsupportedOperationException(); }
+
+    public void setComponentName(String componentName){ throw new UnsupportedOperationException(); }
 
     public String getFileName(){
         throw new UnsupportedOperationException();
@@ -30,5 +30,5 @@ public abstract class FileComponent {
         throw new UnsupportedOperationException();
     }
 
-    protected abstract DefaultMutableTreeNode getFileComponentNode();
+    protected abstract HybridNode getFileComponentNode();
 }

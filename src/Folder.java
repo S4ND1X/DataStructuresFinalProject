@@ -8,21 +8,28 @@ public class Folder extends FileComponent {
     private String folderName;
     private String folderCreationDate;
     private String folderAbsolutePath;
-    private DefaultMutableTreeNode folderNode;
+    private HybridNode folderNode;
 
     public Folder(String folderName, String folderCreationDate, String folderAbsolutePath){
         this.fileComponents = new ArrayList();
         this.folderName = folderName;
         this.folderAbsolutePath = folderAbsolutePath;
         this.folderCreationDate = folderCreationDate;
-        this.folderNode = new DefaultMutableTreeNode(folderName);
+        this.folderNode = new HybridNode(folderName);
+        this.folderNode.setFileComponentOfNode(this);
     }
 
     @Override
-    public DefaultMutableTreeNode getFileComponentNode() { return this.folderNode; }
+    public void setComponentName(String folderName){
+        this.folderName = folderName;
+    }
+
+    @Override
+    public HybridNode getFileComponentNode() { return this.folderNode; }
     @Override
     public void add(FileComponent newFileComponent){
         this.fileComponents.add(newFileComponent);
+        this.folderNode.add(newFileComponent.getFileComponentNode());
     }
     @Override
     public void remove(FileComponent newFileComponent){
@@ -30,19 +37,18 @@ public class Folder extends FileComponent {
     }
     @Override
     public void displayFileInfo(){
-        System.out.println(getFileName() +  " creado el " + getCreationDate() +  " en " + getAbsolutePath());
 
         Iterator fileIterator = fileComponents.iterator();
 
         while(fileIterator.hasNext()){
+
             FileComponent fileInfo = (FileComponent) fileIterator.next();
-            fileInfo.displayFileInfo();
-            this.folderNode.add(fileInfo.getFileComponentNode());
+            fileInfo.displayFileInfo();//Imprimir info del hijo de este folder
         }
     }
 
 
-    public DefaultMutableTreeNode getFolderNode(){
+    public HybridNode getFolderNode(){
         return this.folderNode;
     }
 
