@@ -6,6 +6,10 @@ public abstract class FileComponent {
         throw new UnsupportedOperationException();
     }
 
+    public void setCreationDate(){throw  new UnsupportedOperationException(); }
+
+    public void setAbsolutPath(String absolutPath){ throw  new UnsupportedOperationException(); }
+
     public void remove(FileComponent newFileComponent){
         throw new UnsupportedOperationException();
     }

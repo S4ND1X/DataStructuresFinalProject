@@ -1,4 +1,6 @@
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 
 public class File extends FileComponent{
@@ -9,13 +11,22 @@ public class File extends FileComponent{
     private HybridNode fileNode;
 
 
-    public File(String fileName, String fileCreationDate, String fileAbsolutePath){
+    public File(String fileName, String parentAbsolutePath){
         this.fileName = fileName;
-        this.fileCreationDate = fileCreationDate;
-        this.fileAbsolutePath = fileAbsolutePath;
+        setCreationDate();
+        setAbsolutPath(parentAbsolutePath);
         this.fileNode = new HybridNode(fileName);
         this.fileNode.setFileComponentOfNode(this);
 
+    }
+
+    @Override
+    public void setCreationDate(){
+        this.fileCreationDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+    }
+    @Override
+    public void setAbsolutPath(String absolutPath) {
+        this.fileAbsolutePath = absolutPath + "/" + this.fileName +"/";
     }
 
     @Override

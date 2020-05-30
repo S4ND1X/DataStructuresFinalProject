@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 
 public class TreePanel extends JPanel implements TreeSelectionListener {
@@ -10,7 +11,9 @@ public class TreePanel extends JPanel implements TreeSelectionListener {
 
     public TreePanel(JTree tree){
         this.tree = tree;
+
         setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(1280, 420));
         tree.addTreeSelectionListener(this);
         add(tree, BorderLayout.CENTER);
     }

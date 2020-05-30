@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import java.awt.*;
 
 public class MainFolderComponent {
 
@@ -7,7 +9,6 @@ public class MainFolderComponent {
     private JTree treeNodeMain;
 
     public MainFolderComponent(FileComponent folderList){
-
         this.folderList = folderList;
         setTreeNode(folderList);
     }
