@@ -2,19 +2,12 @@
  * @author Jorge Sánchez Díaz
  * @version v1.0
  */
-import javafx.scene.layout.Border;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.DefaultMenuLayout;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.Flow;
 
 public class FileExplorerControls extends JPanel implements ActionListener {
 
@@ -98,7 +91,9 @@ public class FileExplorerControls extends JPanel implements ActionListener {
         HybridNode selectedNodeExplorer = this.treePanel.getSelectedNodePanel();
         if(selectedNodeExplorer == null){ return; }
        if(this.renameComponentButton == actionEvent.getSource()){
-            String tmp = JOptionPane.showInputDialog(this,"Enter new name: ");
+            String tmp = (String)JOptionPane.showInputDialog(this,"Enter new name: ","Rename File",
+                                                            JOptionPane.PLAIN_MESSAGE, createIcon("rename.png"),
+                                                    null, null);
             if(tmp == null){ return;}
             //Get the selected node and rename that object
             selectedNodeExplorer.getFileComponentOfNode().setComponentName(tmp);
@@ -107,27 +102,34 @@ public class FileExplorerControls extends JPanel implements ActionListener {
        }else if(this.removeComponentButton == actionEvent.getSource()){
            //If the user confirms the remove then we remove all childrens and then we remove the current node from the parent
            if(JOptionPane.showConfirmDialog(this,
-                                            "This action cannot be undone.\n Are you sure you want to delete this file?") == 0){
+                                            "This action cannot be undone.\n Are you sure you want to delete this file?",
+                                                "Warning", JOptionPane.WARNING_MESSAGE,JOptionPane.WARNING_MESSAGE, createIcon("warning.png")) == 0){
                selectedNodeExplorer.removeAllChildren();
                selectedNodeExplorer.removeFromParent();
            }else{ return; }
        }else if(this.createFolderButton == actionEvent.getSource()){
-           String tmp = JOptionPane.showInputDialog(this,"New Folder name: ");
+           String tmp = (String) JOptionPane.showInputDialog(this,"New Folder name: ",
+                                                            "Create Folder", JOptionPane.PLAIN_MESSAGE,createIcon("folder.png"),
+                                                            null,null);
            if(tmp == null){ return;}
            try{
                Folder newFolder = new Folder(tmp, selectedNodeExplorer.getFileComponentOfNode().getFileName());
                selectedNodeExplorer.getFileComponentOfNode().add(newFolder);
            }catch (UnsupportedOperationException ex){
-               JOptionPane.showMessageDialog(this,"Cannot create a folder inside a file");
+               JOptionPane.showMessageDialog(this,"Cannot create a folder inside a file.",
+                                            "Warning",JOptionPane.ERROR_MESSAGE,createIcon("error.png"));
            }
        }else if(this.createFileButton == actionEvent.getSource()){
-           String tmp = JOptionPane.showInputDialog(this,"New Folder name: ");
+           String tmp =(String) JOptionPane.showInputDialog(this,"New file name: ",
+                                                            "Create File", -1,createIcon("file.png"),
+                                                            null,null);
            if(tmp == null){ return;}
            try{
                File newFile = new File(tmp, selectedNodeExplorer.getFileComponentOfNode().getFileName());
                selectedNodeExplorer.getFileComponentOfNode().add(newFile);
            }catch (UnsupportedOperationException ex){
-               JOptionPane.showMessageDialog(this,"Cannot create any document inside a file");
+               JOptionPane.showMessageDialog(this,"Cannot create a document inside a file.",
+                                            "Warning",JOptionPane.ERROR_MESSAGE,createIcon("error.png"));
            }
        }else if(this.fileInfoButton == actionEvent.getSource()){
            try{
