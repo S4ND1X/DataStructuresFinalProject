@@ -1,3 +1,9 @@
+/**
+ * @author Jorge Sánchez Díaz
+ * @version v1.0
+ */
+
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -6,7 +12,7 @@ import java.util.Iterator;
 
 public class Folder extends FileComponent {
 
-    private ArrayList fileComponents;
+    private ArrayList<FileComponent> fileComponents;
     private String folderName;
     private String folderCreationDate;
     private String folderAbsolutePath;
@@ -14,7 +20,7 @@ public class Folder extends FileComponent {
     private int childCount;
 
     public Folder(String folderName, String parentAbsolutePath){
-        this.fileComponents = new ArrayList();
+        this.fileComponents = new ArrayList<FileComponent>();
         setComponentName(folderName);
         setAbsolutPath(parentAbsolutePath);
         setCreationDate();
@@ -51,7 +57,7 @@ public class Folder extends FileComponent {
     @Override
     public void displayFileInfo(){
 
-        Iterator fileIterator = fileComponents.iterator();
+        Iterator<FileComponent> fileIterator = fileComponents.iterator();
 
         while(fileIterator.hasNext()){
 
@@ -61,7 +67,7 @@ public class Folder extends FileComponent {
     }
     public int subFoldersCount(){
 
-        Iterator fileIterator = fileComponents.iterator();
+        Iterator<FileComponent> fileIterator = fileComponents.iterator();
         int cont = 0;
         while(fileIterator.hasNext()){
 

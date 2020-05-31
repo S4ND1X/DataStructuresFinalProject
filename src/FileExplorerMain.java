@@ -1,3 +1,7 @@
+/**
+ * @author Jorge Sánchez Díaz
+ * @version v1.0
+ */
 import javax.swing.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -1,3 +1,7 @@
+/**
+ * @author Jorge Sánchez Díaz
+ * @version v1.0
+ */
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;

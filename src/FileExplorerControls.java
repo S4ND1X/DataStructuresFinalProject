@@ -1,3 +1,7 @@
+/**
+ * @author Jorge Sánchez Díaz
+ * @version v1.0
+ */
 import javafx.scene.layout.Border;
 
 import javax.swing.*;
