@@ -30,12 +30,12 @@ public class Window extends JFrame {
 
         //Add Scrollbar
         Container panelContenido = getContentPane();
-        panelContenido.add(new JScrollPane(this.treePanel));
+        JScrollPane scroller = new JScrollPane(this.treePanel);
+        panelContenido.add(scroller);
         //Add the controls panel
         add(new FileExplorerControls(this.treePanel), BorderLayout.NORTH);
         //Config values of window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
         setVisible(true);
     }
 

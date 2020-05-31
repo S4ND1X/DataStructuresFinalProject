@@ -125,6 +125,24 @@ public class FileExplorerControls extends JPanel implements ActionListener {
            }catch (UnsupportedOperationException ex){
                JOptionPane.showMessageDialog(this,"Cannot create any document inside a file");
            }
+       }else if(this.fileInfoButton == actionEvent.getSource()){
+           try{
+               Folder folder = (Folder) selectedNodeExplorer.getFileComponentOfNode();
+               String message = "Folder name: " + folder.getFileName() + "\nPath: "+ folder.getAbsolutePath() +
+                                "\nCreation date: " + folder.getCreationDate() +
+                                "\nNumber of files: " + folder.getAllChildCount();
+               System.out.println(folder.getAllChildCount());
+               JOptionPane.showMessageDialog(null, message,"Folder Information",
+                                            JOptionPane.INFORMATION_MESSAGE,createIcon("infoMessage.png"));
+           }catch (ClassCastException ex){
+               File file = (File) selectedNodeExplorer.getFileComponentOfNode();
+               String message = "File name: " + file.getFileName() + "\nPath: "+ file.getAbsolutePath() +
+                       "\nCreation date: " + file.getCreationDate();
+               JOptionPane.showMessageDialog(null, message,"File Information",
+                       JOptionPane.INFORMATION_MESSAGE,createIcon("infoMessage.png"));
+           }
+
+           selectedNodeExplorer.getFileComponentOfNode().displayFileInfo();
 
        }
 

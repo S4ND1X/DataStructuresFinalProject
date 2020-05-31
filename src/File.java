@@ -10,7 +10,6 @@ public class File extends FileComponent{
     private String fileAbsolutePath;
     private HybridNode fileNode;
 
-
     public File(String fileName, String parentAbsolutePath){
         this.fileName = fileName;
         setCreationDate();
@@ -36,7 +35,7 @@ public class File extends FileComponent{
 
     @Override
     public void displayFileInfo(){
-        //System.out.println(getFileName() +  " creado el " + getCreationDate() +  " en " + getAbsolutePath());
+        System.out.println(getFileName() +  " creado el " + getCreationDate() +  " en " + getAbsolutePath());
     }
 
     //- -  - - - - - - - - - Getters - - - - - - - - - - -
@@ -48,4 +47,5 @@ public class File extends FileComponent{
     public String getAbsolutePath() { return fileAbsolutePath; }
     @Override
     public String getFileName() { return fileName; }
+
 }

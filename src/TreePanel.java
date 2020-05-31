@@ -43,7 +43,6 @@ public class TreePanel extends JPanel implements TreeSelectionListener {
         try{
             //Se obtiene el nodo del objeto que estoy seleccionando
             this.selectedNodePanel = (HybridNode)tree.getLastSelectedPathComponent();
-            System.out.println(this.selectedNodePanel.getFileComponentOfNode().getFileName());
         }catch (NullPointerException ex){
             System.out.println("No se deteca un componente archivo o un nombre");
         }

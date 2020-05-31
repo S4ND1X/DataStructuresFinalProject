@@ -1,5 +1,4 @@
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +11,7 @@ public class Folder extends FileComponent {
     private String folderCreationDate;
     private String folderAbsolutePath;
     private HybridNode folderNode;
+    private int childCount;
 
     public Folder(String folderName, String parentAbsolutePath){
         this.fileComponents = new ArrayList();
@@ -20,6 +20,7 @@ public class Folder extends FileComponent {
         setCreationDate();
         this.folderNode = new HybridNode(folderName);
         this.folderNode.setFileComponentOfNode(this);
+        this.childCount = 0;
     }
 
     @Override
@@ -41,6 +42,7 @@ public class Folder extends FileComponent {
     public void add(FileComponent newFileComponent){
         this.fileComponents.add(newFileComponent);//Add to array list the FileComponent
         this.folderNode.add(newFileComponent.getFileComponentNode()); //Add node of the component to JTree
+        this.childCount++;
     }
     @Override
     public void remove(FileComponent newFileComponent){
@@ -57,6 +59,17 @@ public class Folder extends FileComponent {
             fileInfo.displayFileInfo();//Imprimir info del hijo de este folder
         }
     }
+    public int subFoldersCount(){
+
+        Iterator fileIterator = fileComponents.iterator();
+        int cont = 0;
+        while(fileIterator.hasNext()){
+
+            FileComponent fileInfo = (FileComponent) fileIterator.next();
+            cont+=fileInfo.getFileComponentNode().getChildCount();
+        }
+        return cont;
+    }
 
     public HybridNode getFolderNode(){
         return this.folderNode;
@@ -70,6 +83,8 @@ public class Folder extends FileComponent {
     public String getCreationDate(){ return this.folderCreationDate; }
     @Override
     public String getAbsolutePath(){ return this.folderAbsolutePath; }
+    public int getDirectChildCount(){ return this.childCount; }
+    public int getAllChildCount(){ return  this.childCount + subFoldersCount();}
 
 
 
