@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 
@@ -10,12 +9,24 @@ public class TreePanel extends JPanel implements TreeSelectionListener {
     private HybridNode selectedNodePanel;
 
     public TreePanel(JTree tree){
+        this.setBackground(Color.BLACK);
         this.tree = tree;
-
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(1280, 420));
+        setPreferredSize(new Dimension(720, 480));
         tree.addTreeSelectionListener(this);
+        customIcons();
         add(tree, BorderLayout.CENTER);
+    }
+
+
+    private void customIcons(){
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) this.tree.getCellRenderer();
+        Icon closedIcon = new ImageIcon(getClass().getResource("closedFolder.png"));
+        Icon openIcon = new ImageIcon(getClass().getResource("openFolder.png"));
+        Icon leafIcon = new ImageIcon(getClass().getResource("fileTree.png"));
+        renderer.setClosedIcon(closedIcon);
+        renderer.setOpenIcon(openIcon);
+        renderer.setLeafIcon(leafIcon);
     }
     public void setTree(JTree tree){
         this.tree = tree;

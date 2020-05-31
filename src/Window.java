@@ -15,7 +15,7 @@ public class Window extends JFrame {
         this.treePanel = new TreePanel(mainFolderComponent.getTreeNode());
         //Set window
         setTitle("File Explorer");
-        setBounds(350, 300, 1280, 720);
+        setBounds(350, 300, 720, 480);
 
         //Set the tree panel and the main folder
         setTreePanel(treePanel);
@@ -25,7 +25,7 @@ public class Window extends JFrame {
 
         DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) this.mainFolderComponent.getTreeNode().getCellRenderer();
         renderer.setFont(new Font("Consolas", Font.BOLD, 30));
-        renderer.setSize(1280, 420);
+        renderer.setSize(720, 480);
 
 
         //Add Scrollbar
@@ -35,6 +35,7 @@ public class Window extends JFrame {
         add(new FileExplorerControls(this.treePanel), BorderLayout.NORTH);
         //Config values of window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
         setVisible(true);
     }
 
